@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.org.dto.User;
 import com.org.utilities.Helper;
 
-@Repository
 public class UserDao {
 
 	EntityManagerFactory emf = Helper.getEmf();
@@ -29,14 +28,13 @@ public class UserDao {
 	public User loginUser(String email, String pwd) {
 		EntityManager em = emf.createEntityManager();
 
-		Query q = em.createQuery("select u from User u where u.email = ?1");
+		Query q = em.createQuery("select u from User u where u.email = ?1 and u.password = ?2");
 		q.setParameter(1, email);
+		q.setParameter(2, pwd);
 		List<User> rl = q.getResultList();
-		for (User usr : rl) {
-			if (usr.getPassword().equals(pwd))
-				return usr;
-		}
-		return null;
+		if(rl.isEmpty())
+			return null;
+		return rl.get(0);
 	}
 
 	public void deleteUserById(int id) {

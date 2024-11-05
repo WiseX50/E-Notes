@@ -15,7 +15,7 @@
 				value="root" />
 			<property name="javax.persistence.jdbc.password"
 				value="St1519#@" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>

@@ -7,12 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import org.springframework.stereotype.Repository;
 
 import com.org.dto.Notes;
 import com.org.utilities.Helper;
 
-@Repository
 public class NotesDao {
 	EntityManagerFactory emf = Helper.getEmf();
 
@@ -44,8 +42,8 @@ public class NotesDao {
 		Query q = em.createQuery("select e from Notes e where e.title = ?1");
 		q.setParameter(1, title);
 		List<Notes> rl = q.getResultList();
-		for (Notes n : rl)
-			return n;
+		if (rl != null)
+			return rl.get(0);
 		return null;
 	}
 }

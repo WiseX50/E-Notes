@@ -10,9 +10,10 @@ import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -27,8 +28,13 @@ public class Notes {
 	
 	@Column(nullable = false)
 	private String description;
-
+	
 	@ManyToOne
 	@JoinColumn
 	User user;
+	
+	public Notes(String title, String description) {
+		this.title = title;
+		this.description=description;
+	}
 }
